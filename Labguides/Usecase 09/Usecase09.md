@@ -338,8 +338,7 @@ reports.
     new lakehouse.
 
     >[!note]**Note**: Ensure to remove space before **data_lakehouse**.
-
-    ![](./media/img3.png)
+     ![](./media/labimg2.png)
 
 3.  You will see a notification stating **Successfully created SQL
     endpoint**.
@@ -1008,6 +1007,7 @@ portal](https://portal.azure.com/?azure-portal=true).
 
     > ![A screenshot of a computer Description automatically
     > generated](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2006/media/image80.png)
+
 
 
 
