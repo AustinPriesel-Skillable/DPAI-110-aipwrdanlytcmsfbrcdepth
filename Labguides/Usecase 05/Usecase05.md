@@ -1264,13 +1264,14 @@ items you created as part of the lab.
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2005/media/image153.png)
 
 2.  In the menu of the workspace header, select **Workspace settings**.
+      ![](./media/img211.png)
 
-3.  In the **Workspace settings** dialog box, in the **General** tab navigate to the bottom and
+4.  In the **Workspace settings** dialog box, in the **General** tab navigate to the bottom and
     select the **Remove this workspace**.
 
      ![](./media/img221.png)
 
-4.  In the **Delete workspace?** dialog box, click on the **Delete**
+5.  In the **Delete workspace?** dialog box, click on the **Delete**
     button.
 
 **Summary**
@@ -1311,6 +1312,7 @@ insights into resource management, emphasizing the importance of cleanup
 procedures to maintain an efficient workspace. Collectively, these tasks
 present a comprehensive understanding of setting up, managing, and
 analyzing data within Microsoft Fabric.
+
 
 
 
