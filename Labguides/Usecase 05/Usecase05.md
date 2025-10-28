@@ -1265,12 +1265,10 @@ items you created as part of the lab.
 
 2.  In the menu of the workspace header, select **Workspace settings**.
 
-     ![](./media/img221.png)
-
 3.  In the **Workspace settings** dialog box, in the **General** tab navigate to the bottom and
     select the **Remove this workspace**.
 
-     ![](./media/img231.png)
+     ![](./media/img221.png)
 
 4.  In the **Delete workspace?** dialog box, click on the **Delete**
     button.
@@ -1313,6 +1311,7 @@ insights into resource management, emphasizing the importance of cleanup
 procedures to maintain an efficient workspace. Collectively, these tasks
 present a comprehensive understanding of setting up, managing, and
 analyzing data within Microsoft Fabric.
+
 
 
 
