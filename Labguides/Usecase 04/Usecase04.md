@@ -97,7 +97,7 @@ trial enabled.
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2002/media/image11.png)
 
 1.  In the **New lakehouse** dialog box, enter
-    **+++DataFactoryLakehouse+++** in the **Name** field, click on the
+    **+++DataFactoryLakehouse+++** in the **Name** field and unselect the lakehouses schemas. Click on the
     **Create** button to open the new lakehouse.
 
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2002/media/image12.png)
@@ -698,4 +698,5 @@ the workspace you created for this tutorial.
 
     > ![A screenshot of a computer AI-generated content may be
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2003/media/image64.png)
+
 
