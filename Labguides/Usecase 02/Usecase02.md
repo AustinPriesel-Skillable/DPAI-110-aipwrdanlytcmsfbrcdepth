@@ -71,12 +71,12 @@ their data engineering and data science workflows
     > ![A screenshot of a computer AI-generated content may be
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image6.png)
 
-5.  Enter **+++AI_Functions+++** as the lakehouse name and
-    select **Create**. When provisioning is complete, the lakehouse
+5.  Enter **+++AI_Functions+++** as the lakehouse name and unselect the lakehouses schemas.
+    Select **Create**. When provisioning is complete, the lakehouse
     explorer page is shown.
 
     > ![A screenshot of a computer AI-generated content may be
-    > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image7.png)
+    > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/labimg20.png)
 
     > ![A screenshot of a computer AI-generated content may be
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image8.png)
@@ -417,3 +417,4 @@ endpoint, offering flexibility for enterprise deployments. Overall,
 this lab showcased how Microsoft Fabric simplifies the use of
 generative AI for data scientists and analysts, enabling smarter and
 faster data transformation and analysis.
+
