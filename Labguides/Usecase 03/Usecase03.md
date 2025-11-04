@@ -1446,10 +1446,9 @@ transform, and load* (ETL) process.
     in the **Data destination** drop-down menu, select **Lakehouse** (if
     not selected already).
 
-    > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media/image116.png)
+    > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media/labimg10.png)
 
-    ![](./media/img22.png)
-
+   
     >[!note]**Note:** If this option is grayed out, you may already have a data
     > destination set. Check the data destination at the bottom of the Query
     > settings pane on the right side of the Power Query editor. If a
@@ -1460,11 +1459,11 @@ transform, and load* (ETL) process.
 
     > ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media/image118.png)
     
-    > ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media/image119.png)
+    > ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media/labimg11.png)
 
 2.  On the **Home** tab select the down-arrow on the **Save** icon and then select **Save, run & close** to publish and close the query.
 
-    > !IMAGE[]([instructions303922](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media)/skillable_image1.png)
+    > !IMAGE[]([instructions303922](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2004/media)/labimg26.png)
 
 3.  Select the **dp_fabric@lab.LabInstance.Id** workspace from the left ribbon and note that the **Gen2_Dataflow** of type **Dataflow Gen2 (CI/CD)** is now present in the list.
 
@@ -1616,6 +1615,7 @@ streamlining your workflow and enhancing productivity in real-world
 scenarios. The cleanup instructions ensure you leave no unnecessary
 resources, promoting an organized and efficient workspace management
 approach.
+
 
 
 
