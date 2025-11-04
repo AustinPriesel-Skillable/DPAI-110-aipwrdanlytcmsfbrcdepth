@@ -378,8 +378,7 @@ the Wide World Importers (WWI) into the lakehouse.
 
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2001/media/imagea9.png)
 
-8.  Choose the **File format** should be **Parquet** for the destination.
-    Click **Save + Run** to initiate the pipeline. You can schedule pipelines to
+8.  Click **Save + Run** to initiate the pipeline. You can schedule pipelines to
     refresh data periodically. In this tutorial, we only run the
     pipeline once.
 
@@ -984,6 +983,7 @@ The lab also covers tasks related to ingesting sample data, optimizing
 delta tables, and building reports in Power BI for effective data
 analysis. The objectives aim to provide hands-on experience in utilizing
 Microsoft Fabric and Power BI for data management and reporting purposes.
+
 
 
 
