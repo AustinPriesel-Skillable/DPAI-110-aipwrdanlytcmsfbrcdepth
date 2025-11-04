@@ -352,6 +352,10 @@ the Wide World Importers (WWI) into the lakehouse.
 
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2001/media/imagea5.png)
 
+5. You will see a notification stating **Use Copy Job**, click on the **No, Copy assistant** button
+   
+	 ![](./media/labimg25.png)
+
 5.  Next, set up a **Sample data** connection to import the sample
     World Wide Importers data into the Lakehouse. From the list of **New
     sources**, select **Retail Data Model from Wide World Importers**.
@@ -374,15 +378,12 @@ the Wide World Importers (WWI) into the lakehouse.
 
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2001/media/imagea9.png)
 
-8.  Choose the **File format** should be empty for the destination.
+8.  Choose the **File format** should be **Parquet** for the destination.
     Click **Save + Run** to initiate the pipeline. You can schedule pipelines to
     refresh data periodically. In this tutorial, we only run the
     pipeline once.
 
     > ![](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2001/media/imagea10.png)
-
-    > ![A screenshot of a computer AI-generated content may be
-    > incorrect.](https://raw.githubusercontent.com/technofocus-pte/msfbrcanlytcsrio/refs/heads/Cloud-slice/Labguide/Usecase%2001/media/imagea11.png)
 
 9.  The data copy process takes approximately 1-3 minutes to complete.
 
@@ -983,6 +984,7 @@ The lab also covers tasks related to ingesting sample data, optimizing
 delta tables, and building reports in Power BI for effective data
 analysis. The objectives aim to provide hands-on experience in utilizing
 Microsoft Fabric and Power BI for data management and reporting purposes.
+
 
 
 
