@@ -1,5 +1,4 @@
-# Use Case 06: Real-Time Analytics and Data Warehousing with AbboCost in Microsoft Fabric
-
+# Use Case 06: Real-Time Intelligence and Data Warehousing with AbboCost in Microsoft Fabric
 **Introduction**
 
 In this lab, you will start by rapidly generating real-time data and
@@ -2058,3 +2057,4 @@ fact_Stocks_Daily_Prices table and the dim_Date and dim_Symbol tables to
 enable cohesive data analysis. Overall, this lab provides a
 comprehensive understanding of setting up a data warehouse environment
 and building a reliable data pipeline for analytics.
+
