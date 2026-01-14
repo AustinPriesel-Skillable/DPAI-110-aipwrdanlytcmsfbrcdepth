@@ -1,3 +1,5 @@
+## **Use case 03-Building a Sales and Geography Data Warehouse for Contoso in Microsoft Fabric** 
+
 **Introduction**
 
 Contoso, a multinational retail company, is looking to modernize its
@@ -109,7 +111,12 @@ trial enabled.
 2.  In the **Create a workspace tab, enter** the following details and
     click on the **Apply** button.
 
-[TABLE]
+    |  |  |
+    |----|---|
+    |Name	|+++Warehouse_Fabric@lab.LabInstance.Id+++ (must be a unique Id) |
+    |Description	|+++This workspace contains all the artifacts for the data warehouse+++|
+    |Advanced	Under License mode| select Fabric capacity|
+    |Default storage format	|Small dataset storage format|
 
 > ![](./media/image7.png)
 >
@@ -244,7 +251,11 @@ trial enabled.
 
 14. On the **Destination** tab, enter the following settings.
 
-[TABLE]
+    |  |  |
+    |---|---|
+    |Connection	|WideWorldImporters|
+    |Table option	|select the Auto create table radio button.|
+    |Table	|•	In the first box enter +++dbo+++<br>•	In the second box enter +++dimension_customer+++|
 
 > **Note: While adding the connect as WideWorldImporters warehouse, add
 > it from the OneLake catalog by navigation to browse all option.**
@@ -297,114 +308,67 @@ trial enabled.
 3.  In the query editor, paste the following code and select **Run** to
     execute the query
 
-> /\*
->
-> 1\. Drop the dimension_city table if it already exists.
->
-> 2\. Create the dimension_city table.
->
-> 3\. Drop the fact_sale table if it already exists.
->
-> 4\. Create the fact_sale table.
->
-> \*/
->
-> --dimension_city
->
-> DROP TABLE IF EXISTS \[dbo\].\[dimension_city\];
->
-> CREATE TABLE \[dbo\].\[dimension_city\]
->
-> (
->
-> \[CityKey\] \[int\] NULL,
->
-> \[WWICityID\] \[int\] NULL,
->
-> \[City\] \[varchar\](8000) NULL,
->
-> \[StateProvince\] \[varchar\](8000) NULL,
->
-> \[Country\] \[varchar\](8000) NULL,
->
-> \[Continent\] \[varchar\](8000) NULL,
->
-> \[SalesTerritory\] \[varchar\](8000) NULL,
->
-> \[Region\] \[varchar\](8000) NULL,
->
-> \[Subregion\] \[varchar\](8000) NULL,
->
-> \[Location\] \[varchar\](8000) NULL,
->
-> \[LatestRecordedPopulation\] \[bigint\] NULL,
->
-> \[ValidFrom\] \[datetime2\](6) NULL,
->
-> \[ValidTo\] \[datetime2\](6) NULL,
->
-> \[LineageKey\] \[int\] NULL
->
-> );
->
-> --fact_sale
->
-> DROP TABLE IF EXISTS \[dbo\].\[fact_sale\];
->
-> CREATE TABLE \[dbo\].\[fact_sale\]
->
-> (
->
-> \[SaleKey\] \[bigint\] NULL,
->
-> \[CityKey\] \[int\] NULL,
->
-> \[CustomerKey\] \[int\] NULL,
->
-> \[BillToCustomerKey\] \[int\] NULL,
->
-> \[StockItemKey\] \[int\] NULL,
->
-> \[InvoiceDateKey\] \[datetime2\](6) NULL,
->
-> \[DeliveryDateKey\] \[datetime2\](6) NULL,
->
-> \[SalespersonKey\] \[int\] NULL,
->
-> \[WWIInvoiceID\] \[int\] NULL,
->
-> \[Description\] \[varchar\](8000) NULL,
->
-> \[Package\] \[varchar\](8000) NULL,
->
-> \[Quantity\] \[int\] NULL,
->
-> \[UnitPrice\] \[decimal\](18, 2) NULL,
->
-> \[TaxRate\] \[decimal\](18, 3) NULL,
->
-> \[TotalExcludingTax\] \[decimal\](29, 2) NULL,
->
-> \[TaxAmount\] \[decimal\](38, 6) NULL,
->
-> \[Profit\] \[decimal\](18, 2) NULL,
->
-> \[TotalIncludingTax\] \[decimal\](38, 6) NULL,
->
-> \[TotalDryItems\] \[int\] NULL,
->
-> \[TotalChillerItems\] \[int\] NULL,
->
-> \[LineageKey\] \[int\] NULL,
->
-> \[Month\] \[int\] NULL,
->
-> \[Year\] \[int\] NULL,
->
-> \[Quarter\] \[int\] NULL
->
-> );
->
+    ```
+    /*
+    1. Drop the dimension_city table if it already exists.
+    2. Create the dimension_city table.
+    3. Drop the fact_sale table if it already exists.
+    4. Create the fact_sale table.
+    */
+    
+    --dimension_city
+    DROP TABLE IF EXISTS [dbo].[dimension_city];
+    CREATE TABLE [dbo].[dimension_city]
+        (
+            [CityKey] [int] NULL,
+            [WWICityID] [int] NULL,
+            [City] [varchar](8000) NULL,
+            [StateProvince] [varchar](8000) NULL,
+            [Country] [varchar](8000) NULL,
+            [Continent] [varchar](8000) NULL,
+            [SalesTerritory] [varchar](8000) NULL,
+            [Region] [varchar](8000) NULL,
+            [Subregion] [varchar](8000) NULL,
+            [Location] [varchar](8000) NULL,
+            [LatestRecordedPopulation] [bigint] NULL,
+            [ValidFrom] [datetime2](6) NULL,
+            [ValidTo] [datetime2](6) NULL,
+            [LineageKey] [int] NULL
+        );
+    
+    --fact_sale
+    
+    DROP TABLE IF EXISTS [dbo].[fact_sale];
+    
+    CREATE TABLE [dbo].[fact_sale]
+    
+        (
+            [SaleKey] [bigint] NULL,
+            [CityKey] [int] NULL,
+            [CustomerKey] [int] NULL,
+            [BillToCustomerKey] [int] NULL,
+            [StockItemKey] [int] NULL,
+            [InvoiceDateKey] [datetime2](6) NULL,
+            [DeliveryDateKey] [datetime2](6) NULL,
+            [SalespersonKey] [int] NULL,
+            [WWIInvoiceID] [int] NULL,
+            [Description] [varchar](8000) NULL,
+            [Package] [varchar](8000) NULL,
+            [Quantity] [int] NULL,
+            [UnitPrice] [decimal](18, 2) NULL,
+            [TaxRate] [decimal](18, 3) NULL,
+            [TotalExcludingTax] [decimal](29, 2) NULL,
+            [TaxAmount] [decimal](38, 6) NULL,
+            [Profit] [decimal](18, 2) NULL,
+            [TotalIncludingTax] [decimal](38, 6) NULL,
+            [TotalDryItems] [int] NULL,
+            [TotalChillerItems] [int] NULL,
+            [LineageKey] [int] NULL,
+            [Month] [int] NULL,
+            [Year] [int] NULL,
+            [Quarter] [int] NULL
+        );
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image35.png)
 >
@@ -452,26 +416,17 @@ methods for loading data.
 2.  In the query editor, **paste** the following code, then click on
     **Run** to execute the query.
 
-> --Copy data from the public Azure storage account to the
-> dbo.dimension_city table.
->
-> COPY INTO \[dbo\].\[dimension_city\]
->
-> FROM
-> 'https://fabrictutorialdata.blob.core.windows.net/sampledata/WideWorldImportersDW/tables/dimension_city.parquet'
->
-> WITH (FILE_TYPE = 'PARQUET');
->
-> --Copy data from the public Azure storage account to the dbo.fact_sale
-> table.
->
-> COPY INTO \[dbo\].\[fact_sale\]
->
-> FROM
-> 'https://fabrictutorialdata.blob.core.windows.net/sampledata/WideWorldImportersDW/tables/fact_sale.parquet'
->
-> WITH (FILE_TYPE = 'PARQUET');
->
+    ```
+    --Copy data from the public Azure storage account to the dbo.dimension_city table.
+    COPY INTO [dbo].[dimension_city]
+    FROM 'https://fabrictutorialdata.blob.core.windows.net/sampledata/WideWorldImportersDW/tables/dimension_city.parquet'
+    WITH (FILE_TYPE = 'PARQUET');
+    
+    --Copy data from the public Azure storage account to the dbo.fact_sale table.
+    COPY INTO [dbo].[fact_sale]
+    FROM 'https://fabrictutorialdata.blob.core.windows.net/sampledata/WideWorldImportersDW/tables/fact_sale.parquet'
+    WITH (FILE_TYPE = 'PARQUET');
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image43.png)
 
@@ -527,15 +482,13 @@ syntax.
 3.  In the query editor, paste the following code to create clones of
     the **dbo.dimension_city** and **dbo.fact_sale** tables.
 
-> --Create a clone of the dbo.dimension_city table.
->
-> CREATE TABLE \[dbo\].\[dimension_city1\] AS CLONE OF
-> \[dbo\].\[dimension_city\];
->
-> --Create a clone of the dbo.fact_sale table.
->
-> CREATE TABLE \[dbo\].\[fact_sale1\] AS CLONE OF \[dbo\].\[fact_sale\];
->
+    ```
+    --Create a clone of the dbo.dimension_city table.
+    CREATE TABLE [dbo].[dimension_city1] AS CLONE OF [dbo].[dimension_city];
+    
+    --Create a clone of the dbo.fact_sale table.
+    CREATE TABLE [dbo].[fact_sale1] AS CLONE OF [dbo].[fact_sale];
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image51.png)
 
@@ -587,25 +540,23 @@ syntax.
     named **dbo1**. **Copy paste** and **run** the following T-SQL code
     as shown in the below image:
 
-> CREATE SCHEMA dbo1;
->
+    +++CREATE SCHEMA dbo1+++
+    
 > ![A screenshot of a computer Description automatically
 > generated](./media/image60.png)
 >
 > ![A screenshot of a computer Description automatically
 > generated](./media/image61.png)
 
-3.  In the query editor, remove the existing code and paste the following to create clones of the **dbo.dimension_city** and dbo.**fact_sale tables** in the **dbo1** schema.
+3. In the query editor, remove the existing code and paste the following to create clones of the **dbo.dimension_city** and dbo.**fact_sale tables** in the **dbo1** schema.
 
-> --Create a clone of the dbo.dimension_city table in the dbo1 schema.
->
-> CREATE TABLE \[dbo1\].\[dimension_city1\] AS CLONE OF
-> \[dbo\].\[dimension_city\];
->
-> --Create a clone of the dbo.fact_sale table in the dbo1 schema.
->
-> CREATE TABLE \[dbo1\].\[fact_sale1\] AS CLONE OF
-> \[dbo\].\[fact_sale\];
+    ```
+    --Create a clone of the dbo.dimension_city table in the dbo1 schema.
+    CREATE TABLE [dbo1].[dimension_city1] AS CLONE OF [dbo].[dimension_city];
+    
+    --Create a clone of the dbo.fact_sale table in the dbo1 schema.
+    CREATE TABLE [dbo1].[fact_sale1] AS CLONE OF [dbo].[fact_sale];
+    ```
 
 4.  Select **Run** to execute the query. The query takes a few seconds
     to execute.
@@ -665,95 +616,54 @@ Learn how to create and save a new stored procedure to transform data.
     stored procedure will create and load
     the **dbo.aggregate_sale_by_date_city** table in a later step.
 
-> --Drop the stored procedure if it already exists.
->
-> DROP PROCEDURE IF EXISTS \[dbo\].\[populate_aggregate_sale_by_city\]
->
-> GO
->
-> --Create the populate_aggregate_sale_by_city stored procedure.
->
-> CREATE PROCEDURE \[dbo\].\[populate_aggregate_sale_by_city\]
->
-> AS
->
-> BEGIN
->
-> --If the aggregate table already exists, drop it. Then create the
-> table.
->
-> DROP TABLE IF EXISTS \[dbo\].\[aggregate_sale_by_date_city\];
->
-> CREATE TABLE \[dbo\].\[aggregate_sale_by_date_city\]
->
-> (
->
-> \[Date\] \[DATETIME2\](6),
->
-> \[City\] \[VARCHAR\](8000),
->
-> \[StateProvince\] \[VARCHAR\](8000),
->
-> \[SalesTerritory\] \[VARCHAR\](8000),
->
-> \[SumOfTotalExcludingTax\] \[DECIMAL\](38,2),
->
-> \[SumOfTaxAmount\] \[DECIMAL\](38,6),
->
-> \[SumOfTotalIncludingTax\] \[DECIMAL\](38,6),
->
-> \[SumOfProfit\] \[DECIMAL\](38,2)
->
-> );
->
-> --Reload the aggregated dataset to the table.
->
-> INSERT INTO \[dbo\].\[aggregate_sale_by_date_city\]
->
-> SELECT
->
-> FS.\[InvoiceDateKey\] AS \[Date\],
->
-> DC.\[City\],
->
-> DC.\[StateProvince\],
->
-> DC.\[SalesTerritory\],
->
-> SUM(FS.\[TotalExcludingTax\]) AS \[SumOfTotalExcludingTax\],
->
-> SUM(FS.\[TaxAmount\]) AS \[SumOfTaxAmount\],
->
-> SUM(FS.\[TotalIncludingTax\]) AS \[SumOfTotalIncludingTax\],
->
-> SUM(FS.\[Profit\]) AS \[SumOfProfit\]
->
-> FROM \[dbo\].\[fact_sale\] AS FS
->
-> INNER JOIN \[dbo\].\[dimension_city\] AS DC
->
-> ON FS.\[CityKey\] = DC.\[CityKey\]
->
-> GROUP BY
->
-> FS.\[InvoiceDateKey\],
->
-> DC.\[City\],
->
-> DC.\[StateProvince\],
->
-> DC.\[SalesTerritory\]
->
-> ORDER BY
->
-> FS.\[InvoiceDateKey\],
->
-> DC.\[StateProvince\],
->
-> DC.\[City\];
->
-> END
->
+    ```
+    --Drop the stored procedure if it already exists.
+    DROP PROCEDURE IF EXISTS [dbo].[populate_aggregate_sale_by_city]
+    GO
+    
+    --Create the populate_aggregate_sale_by_city stored procedure.
+    CREATE PROCEDURE [dbo].[populate_aggregate_sale_by_city]
+    AS
+    BEGIN
+        --If the aggregate table already exists, drop it. Then create the table.
+        DROP TABLE IF EXISTS [dbo].[aggregate_sale_by_date_city];
+        CREATE TABLE [dbo].[aggregate_sale_by_date_city]
+            (
+                [Date] [DATETIME2](6),
+                [City] [VARCHAR](8000),
+                [StateProvince] [VARCHAR](8000),
+                [SalesTerritory] [VARCHAR](8000),
+                [SumOfTotalExcludingTax] [DECIMAL](38,2),
+                [SumOfTaxAmount] [DECIMAL](38,6),
+                [SumOfTotalIncludingTax] [DECIMAL](38,6),
+                [SumOfProfit] [DECIMAL](38,2)
+            );
+    
+        --Reload the aggregated dataset to the table.
+        INSERT INTO [dbo].[aggregate_sale_by_date_city]
+        SELECT
+            FS.[InvoiceDateKey] AS [Date], 
+            DC.[City], 
+            DC.[StateProvince], 
+            DC.[SalesTerritory], 
+            SUM(FS.[TotalExcludingTax]) AS [SumOfTotalExcludingTax], 
+            SUM(FS.[TaxAmount]) AS [SumOfTaxAmount], 
+            SUM(FS.[TotalIncludingTax]) AS [SumOfTotalIncludingTax], 
+            SUM(FS.[Profit]) AS [SumOfProfit]
+        FROM [dbo].[fact_sale] AS FS
+        INNER JOIN [dbo].[dimension_city] AS DC
+            ON FS.[CityKey] = DC.[CityKey]
+        GROUP BY
+            FS.[InvoiceDateKey],
+            DC.[City], 
+            DC.[StateProvince], 
+            DC.[SalesTerritory]
+        ORDER BY 
+            FS.[InvoiceDateKey], 
+            DC.[StateProvince], 
+            DC.[City];
+    END
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image71.png)
 >
@@ -797,10 +707,10 @@ Learn how to create and save a new stored procedure to transform data.
     **dbo.populate_aggregate_sale_by_city** to create the
     **dbo.aggregate_sale_by_date_city** table.Run the query.
 
-> --Execute the stored procedure to create the aggregate table.
->
-> EXEC \[dbo\].\[populate_aggregate_sale_by_city\];
->
+    ```
+    --Execute the stored procedure to create the aggregate table.
+    EXEC [dbo].[populate_aggregate_sale_by_city];
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image79.png)
 >
@@ -844,37 +754,23 @@ generated](./media/image85.png)
 2.  In the query editor, paste the following code to create the
     view Top10CustomerView. Select **Run** to execute the query.
 
-CREATE VIEW dbo.Top10CustomersView
-
-AS
-
-SELECT TOP (10)
-
-    FS.\[CustomerKey\],
-
-    DC.\[Customer\],
-
-    SUM(FS.TotalIncludingTax) AS TotalSalesAmount
-
-FROM
-
-    \[dbo\].\[dimension_customer\] AS DC
-
-INNER JOIN
-
-    \[dbo\].\[fact_sale\] AS FS ON DC.\[CustomerKey\] =
-FS.\[CustomerKey\]
-
-GROUP BY
-
-    FS.\[CustomerKey\],
-
-    DC.\[Customer\]
-
-ORDER BY
-
-    TotalSalesAmount DESC;
-
+    ```
+    CREATE VIEW dbo.Top10CustomersView
+    AS
+    SELECT TOP (10)
+        FS.[CustomerKey],
+        DC.[Customer],
+        SUM(FS.TotalIncludingTax) AS TotalSalesAmount
+    FROM
+        [dbo].[dimension_customer] AS DC
+    INNER JOIN
+        [dbo].[fact_sale] AS FS ON DC.[CustomerKey] = FS.[CustomerKey]
+    GROUP BY
+        FS.[CustomerKey],
+        DC.[Customer]
+    ORDER BY
+        TotalSalesAmount DESC;
+    ```
 ![A screenshot of a computer Description automatically
 generated](./media/image87.png)
 
@@ -909,14 +805,12 @@ generated](./media/image92.png)
     record which has the **SaleKey **value of **22632918.**
     Select **Run** to execute the query.
 
-/\*Update the TotalIncludingTax value of the record with SaleKey value
-of 22632918\*/
-
-UPDATE \[dbo\].\[fact_sale\]
-
-SET TotalIncludingTax = 200000000
-
-WHERE SaleKey = 22632918;
+    ```
+    /*Update the TotalIncludingTax value of the record with SaleKey value of 22632918*/
+    UPDATE [dbo].[fact_sale]
+    SET TotalIncludingTax = 200000000
+    WHERE SaleKey = 22632918;
+    ```
 
 ![A screenshot of a computer Description automatically
 generated](./media/image93.png)
@@ -928,7 +822,9 @@ generated](./media/image94.png)
     The CURRENT_TIMESTAMP T-SQL function returns the current UTC
     timestamp as a **datetime**. Select **Run** to execute the query.
 
-SELECT CURRENT_TIMESTAMP;
+    ```
+    SELECT CURRENT_TIMESTAMP;
+    ```
 
 ![](./media/image95.png)
 
@@ -950,13 +846,12 @@ generated](./media/image96.png)
     for **SaleKey** 22632918. Replace the existing code and paste the
     following code and select **Run** to execute the query.
 
-/\*View of Top10 Customers as of today after record updates\*/
-
-SELECT \*
-
-FROM \[WideWorldImporters\].\[dbo\].\[Top10CustomersView\]
-
-OPTION (FOR TIMESTAMP AS OF '2025-06-09T06:16:08.807');
+    ```
+    /*View of Top10 Customers as of today after record updates*/
+    SELECT *
+    FROM [WideWorldImporters].[dbo].[Top10CustomersView]
+    OPTION (FOR TIMESTAMP AS OF '2025-06-09T06:16:08.807');
+    ```
 
 ![A screenshot of a computer Description automatically
 generated](./media/image97.png)
@@ -967,13 +862,12 @@ generated](./media/image97.png)
     of top ten customers *before* the **TotalIncludingTax** was updated
     for **SaleKey** 22632918. Select **Run** to execute the query.
 
-/\*View of Top10 Customers as of today before record updates\*/
-
-SELECT \*
-
-FROM \[WideWorldImporters\].\[dbo\].\[Top10CustomersView\]
-
-OPTION (FOR TIMESTAMP AS OF '2024-04-24T20:49:06.097');
+    ```
+    /*View of Top10 Customers as of today before record updates*/
+    SELECT *
+    FROM [WideWorldImporters].[dbo].[Top10CustomersView]
+    OPTION (FOR TIMESTAMP AS OF '2024-04-24T20:49:06.097');
+    ```
 
 ![A screenshot of a computer Description automatically
 generated](./media/image98.png)
@@ -1152,7 +1046,7 @@ Microsoft Fabric workspace:
 > generated](./media/image119.png)
 
 3.  In the **Name** field, enter +++**ShortcutExercise+++** and click on
-    the **Create** button**.**
+    the **Create** button.
 
 > ![A screenshot of a computer Description automatically
 > generated](./media/image120.png)
@@ -1280,23 +1174,16 @@ the database.schema.table, as in SQL Server.
     the **Run** button to execute the query. After the query is
     completed, you will see the results.
 
-> SQLCopy
->
-> SELECT Sales.StockItemKey,
->
-> Sales.Description,
->
-> SUM(CAST(Sales.Quantity AS int)) AS SoldQuantity,
->
-> c.Customer
->
-> FROM \[dbo\].\[fact_sale\] AS Sales,
->
-> \[ShortcutExercise\].\[dbo\].\[dimension_customer\] AS c
->
-> WHERE Sales.CustomerKey = c.CustomerKey
->
-> GROUP BY Sales.StockItemKey, Sales.Description, c.Customer;
+    ```
+    SELECT Sales.StockItemKey, 
+    Sales.Description, 
+    SUM(CAST(Sales.Quantity AS int)) AS SoldQuantity, 
+    c.Customer
+    FROM [dbo].[fact_sale] AS Sales,
+    [ShortcutExercise].[dbo].[dimension_customer] AS c
+    WHERE Sales.CustomerKey = c.CustomerKey
+    GROUP BY Sales.StockItemKey, Sales.Description, c.Customer;
+    ```
 
 ![](./media/image138.png)
 
@@ -1548,3 +1435,4 @@ insights into resource management, emphasizing the importance of cleanup
 procedures to maintain an efficient workspace. Collectively, these tasks
 present a comprehensive understanding of setting up, managing, and
 analyzing data within Microsoft Fabric.
+
