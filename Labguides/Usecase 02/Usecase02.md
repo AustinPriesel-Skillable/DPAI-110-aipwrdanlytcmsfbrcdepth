@@ -111,18 +111,16 @@ pandas or PySpark, depending on your preference.
     # Install SynapseML-Internal .whl with AI functions library from blob storage:
     %pip install -q --force-reinstall https://mmlspark.blob.core.windows.net/pip/1.0.11.1-spark3.5/synapseml_internal-1.0.11.1.dev1-py2.py3-none-any.whl
     ```
-
-    > ![A screenshot of a computer AI-generated content may be
+   > ![A screenshot of a computer AI-generated content may be
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image11.png)
 
-    > ![A screenshot of a computer code AI-generated content may be
+   > ![A screenshot of a computer code AI-generated content may be
     > incorrect.](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image12.png)
 
-	>[!note]**Note:** It can happen that the notebook will throw some errors in
+>[!note]**Note:** It can happen that the notebook will throw some errors in
 	> cell 1. These errors are caused by libaries that already have been
 	> installed in the environment. You can safely ignore these errors. The
 	> notebook will execute successfully regardless of these errors.
-
     > ![](https://raw.githubusercontent.com/technofocus-pte/aipwrdanlytcmsfbrcdepth/refs/heads/Cloud-slice/Labguides/Usecase%2002/media/image13.png)
 
 3.  Use the **+ Code** icon below the cell output to add a new code cell
@@ -417,4 +415,5 @@ endpoint, offering flexibility for enterprise deployments. Overall,
 this lab showcased how Microsoft Fabric simplifies the use of
 generative AI for data scientists and analysts, enabling smarter and
 faster data transformation and analysis.
+
 
