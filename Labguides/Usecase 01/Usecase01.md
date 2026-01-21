@@ -74,6 +74,10 @@ analysis.
 
 2.  In the **Microsoft Fabric** window, enter your credentials, and
     click on the **Submit** button.
+    |   |   |
+    |---|---|
+    | Username | +++@lab.CloudPortalCredential(User1).Username+++ |
+    | Password | +++@lab.CloudPortalCredential(User1).Password+++ |
 
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image2.png)
@@ -109,7 +113,12 @@ reports.
 2.  In the **Create a workspace** pane that appears on the right side,
     enter the following details, and click on the **Apply** button.
 
-[TABLE]
+    | Property  | Value  |
+    |-------|-----|
+    |Name|	+++Fabric Lakehouse Tutorial-@lab.LabInstance.Id+++ (must be a unique Id)|
+    |Advanced	|Under License mode, select Fabric capacity|
+    |Default	storage format| Small dataset storage format|
+    |Template apps	|Check the Develop template apps|
 
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image7.png)
@@ -243,12 +252,11 @@ ID.
     as shown in the below image, then click on the play icon
     to **Run** the script:
 
-> SELECT BuyingGroup, Count(\*) AS Total
->
-> FROM dimension_customer
->
-> GROUP BY BuyingGroup
->
+    ```
+    SELECT BuyingGroup, Count(*) AS Total
+    FROM dimension_customer
+    GROUP BY BuyingGroup
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image30.png)
 
@@ -496,16 +504,13 @@ aims to increase individual file size of the written data.
 4.  Update the code in the **cell** with the following code and click
     on **▷ Run cell** that appears to the left of the cell upon hover.
 
-> \# Copyright (c) Microsoft Corporation.
->
-> \# Licensed under the MIT License.
->
-> spark.conf.set("spark.sql.parquet.vorder.enabled", "true")
->
-> spark.conf.set("spark.microsoft.delta.optimizeWrite.enabled", "true")
->
-> spark.conf.set("spark.microsoft.delta.optimizeWrite.binSize",
-> "1073741824")
+    ```
+    # Copyright (c) Microsoft Corporation.
+    # Licensed under the MIT License.
+    spark.conf.set("spark.sql.parquet.vorder.enabled", "true")
+    spark.conf.set("spark.microsoft.delta.optimizeWrite.enabled", "true")
+    spark.conf.set("spark.microsoft.delta.optimizeWrite.binSize", "1073741824")
+    ```
 
 \[!note\]**Note**: When running a cell, you didn't have to specify the
 underlying Spark
@@ -538,20 +543,18 @@ this notebook while the Spark session is active.
 **Note**: In case, you are unable to see the output, then click on the
 horizontal lines on the left side of **Spark jobs**.
 
-from pyspark.sql.functions import col, year, month, quarter
-
-table_name = 'fact_sale'
-
-df = spark.read.format("parquet").load('Files/fact_sale_1y_full')
-
-df = df.withColumn('Year', year(col("InvoiceDateKey")))
-
-df = df.withColumn('Quarter', quarter(col("InvoiceDateKey")))
-
-df = df.withColumn('Month', month(col("InvoiceDateKey")))
-
-df.write.mode("overwrite").format("delta").partitionBy("Year","Quarter").save("Tables/" +
-table_name)
+    ```
+    from pyspark.sql.functions import col, year, month, quarter
+    
+    table_name = 'fact_sale'
+    
+    df = spark.read.format("parquet").load('Files/fact_sale_1y_full')
+    df = df.withColumn('Year', year(col("InvoiceDateKey")))
+    df = df.withColumn('Quarter', quarter(col("InvoiceDateKey")))
+    df = df.withColumn('Month', month(col("InvoiceDateKey")))
+    
+    df.write.mode("overwrite").format("delta").partitionBy("Year","Quarter").save("Tables/" + table_name)
+    ```
 
 > ![A screenshot of a computer Description automatically
 > generated](./media/image70.png)
@@ -573,35 +576,25 @@ table_name)
     to the notebook, and enter the following code in it. Click on **▷
     Run cell** button and review the output.
 
-> from pyspark.sql.types import \*
->
-> def loadFullDataFromSource(table_name):
->
-> df = spark.read.format("parquet").load('Files/' + table_name)
->
-> df = df.drop("Photo")
->
-> df.write.mode("overwrite").format("delta").save("Tables/" +
-> table_name)
->
-> full_tables = \[
->
-> 'dimension_city',
->
-> 'dimension_customer',
->
-> 'dimension_date',
->
-> 'dimension_employee',
->
-> 'dimension_stock_item'
->
-> \]
->
-> for table in full_tables:
->
-> loadFullDataFromSource(table)
->
+    ```
+    from pyspark.sql.types import *
+    
+    def loadFullDataFromSource(table_name):
+        df = spark.read.format("parquet").load('Files/' + table_name)
+        df = df.drop("Photo")
+        df.write.mode("overwrite").format("delta").save("Tables/" + table_name)
+    
+    full_tables = [
+        'dimension_city',
+        'dimension_customer',
+        'dimension_date',
+        'dimension_employee',
+        'dimension_stock_item'
+    ]
+    
+    for table in full_tables:
+        loadFullDataFromSource(table)
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image73.png)
 >
@@ -651,11 +644,11 @@ the **Tables** section of the lakehouse to persist with the data.
 In this cell, you create three different Spark dataframes, each
 referencing an existing delta table.
 
-> df_fact_sale = spark.read.table("wwilakehouse.fact_sale")
->
-> df_dimension_date = spark.read.table("wwilakehouse.dimension_date")
->
-> df_dimension_city = spark.read.table("wwilakehouse.dimension_city")
+    ```
+    df_fact_sale = spark.read.table("wwilakehouse.fact_sale") 
+    df_dimension_date = spark.read.table("wwilakehouse.dimension_date")
+    df_dimension_city = spark.read.table("wwilakehouse.dimension_city")
+    ```
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
@@ -669,42 +662,23 @@ earlier, do group by to generate aggregation, rename a few of the
 columns, and finally write it as a delta table in the **Tables** section
 of the lakehouse.
 
-sale_by_date_city = df_fact_sale.alias("sale") \\
-
-.join(df_dimension_date.alias("date"), df_fact_sale.InvoiceDateKey ==
-df_dimension_date.Date, "inner") \\
-
-.join(df_dimension_city.alias("city"), df_fact_sale.CityKey ==
-df_dimension_city.CityKey, "inner") \\
-
-.select("date.Date", "date.CalendarMonthLabel", "date.Day",
-"date.ShortMonth", "date.CalendarYear", "city.City",
-"city.StateProvince",
-
-"city.SalesTerritory", "sale.TotalExcludingTax", "sale.TaxAmount",
-"sale.TotalIncludingTax", "sale.Profit")\\
-
-.groupBy("date.Date", "date.CalendarMonthLabel", "date.Day",
-"date.ShortMonth", "date.CalendarYear", "city.City",
-"city.StateProvince",
-
-"city.SalesTerritory")\\
-
-.sum("sale.TotalExcludingTax", "sale.TaxAmount",
-"sale.TotalIncludingTax", "sale.Profit")\\
-
-.withColumnRenamed("sum(TotalExcludingTax)", "SumOfTotalExcludingTax")\\
-
-.withColumnRenamed("sum(TaxAmount)", "SumOfTaxAmount")\\
-
-.withColumnRenamed("sum(TotalIncludingTax)", "SumOfTotalIncludingTax")\\
-
-.withColumnRenamed("sum(Profit)", "SumOfProfit")\\
-
-.orderBy("date.Date", "city.StateProvince", "city.City")
-
-sale_by_date_city.write.mode("overwrite").format("delta").option("overwriteSchema",
-"true").save("Tables/aggregate_sale_by_date_city")
+    ```
+    sale_by_date_city = df_fact_sale.alias("sale") \
+    .join(df_dimension_date.alias("date"), df_fact_sale.InvoiceDateKey == df_dimension_date.Date, "inner") \
+    .join(df_dimension_city.alias("city"), df_fact_sale.CityKey == df_dimension_city.CityKey, "inner") \
+    .select("date.Date", "date.CalendarMonthLabel", "date.Day", "date.ShortMonth", "date.CalendarYear", "city.City", "city.StateProvince", 
+     "city.SalesTerritory", "sale.TotalExcludingTax", "sale.TaxAmount", "sale.TotalIncludingTax", "sale.Profit")\
+    .groupBy("date.Date", "date.CalendarMonthLabel", "date.Day", "date.ShortMonth", "date.CalendarYear", "city.City", "city.StateProvince", 
+     "city.SalesTerritory")\
+    .sum("sale.TotalExcludingTax", "sale.TaxAmount", "sale.TotalIncludingTax", "sale.Profit")\
+    .withColumnRenamed("sum(TotalExcludingTax)", "SumOfTotalExcludingTax")\
+    .withColumnRenamed("sum(TaxAmount)", "SumOfTaxAmount")\
+    .withColumnRenamed("sum(TotalIncludingTax)", "SumOfTotalIncludingTax")\
+    .withColumnRenamed("sum(Profit)", "SumOfProfit")\
+    .orderBy("date.Date", "city.StateProvince", "city.City")
+    
+    sale_by_date_city.write.mode("overwrite").format("delta").option("overwriteSchema", "true").save("Tables/aggregate_sale_by_date_city")
+    ```
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image78.png)
@@ -725,40 +699,24 @@ lakehouse to persist with the data.
 In this cell, you create a temporary Spark view by joining three tables,
 do group by to generate aggregation, and rename a few of the columns.
 
-%%sql
-
-CREATE OR REPLACE TEMPORARY VIEW sale_by_date_employee
-
-AS
-
-SELECT
-
-DD.Date, DD.CalendarMonthLabel
-
-, DD.Day, DD.ShortMonth Month, CalendarYear Year
-
-,DE.PreferredName, DE.Employee
-
-,SUM(FS.TotalExcludingTax) SumOfTotalExcludingTax
-
-,SUM(FS.TaxAmount) SumOfTaxAmount
-
-,SUM(FS.TotalIncludingTax) SumOfTotalIncludingTax
-
-,SUM(Profit) SumOfProfit
-
-FROM wwilakehouse.fact_sale FS
-
-INNER JOIN wwilakehouse.dimension_date DD ON FS.InvoiceDateKey = DD.Date
-
-INNER JOIN wwilakehouse.dimension_Employee DE ON FS.SalespersonKey =
-DE.EmployeeKey
-
-GROUP BY DD.Date, DD.CalendarMonthLabel, DD.Day, DD.ShortMonth,
-DD.CalendarYear, DE.PreferredName, DE.Employee
-
-ORDER BY DD.Date ASC, DE.PreferredName ASC, DE.Employee ASC
-
+    ```
+    %%sql
+    CREATE OR REPLACE TEMPORARY VIEW sale_by_date_employee
+    AS
+    SELECT
+           DD.Date, DD.CalendarMonthLabel
+     , DD.Day, DD.ShortMonth Month, CalendarYear Year
+          ,DE.PreferredName, DE.Employee
+          ,SUM(FS.TotalExcludingTax) SumOfTotalExcludingTax
+          ,SUM(FS.TaxAmount) SumOfTaxAmount
+          ,SUM(FS.TotalIncludingTax) SumOfTotalIncludingTax
+          ,SUM(Profit) SumOfProfit 
+    FROM wwilakehouse.fact_sale FS
+    INNER JOIN wwilakehouse.dimension_date DD ON FS.InvoiceDateKey = DD.Date
+    INNER JOIN wwilakehouse.dimension_Employee DE ON FS.SalespersonKey = DE.EmployeeKey
+    GROUP BY DD.Date, DD.CalendarMonthLabel, DD.Day, DD.ShortMonth, DD.CalendarYear, DE.PreferredName, DE.Employee
+    ORDER BY DD.Date ASC, DE.PreferredName ASC, DE.Employee ASC
+    ```
  ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image79.png)
 
@@ -770,11 +728,10 @@ In this cell, you read from the temporary Spark view created in the
 previous cell and finally write it as a delta table in
 the **Tables** section of the lakehouse.
 
-sale_by_date_employee = spark.sql("SELECT \* FROM
-sale_by_date_employee")
-
-sale_by_date_employee.write.mode("overwrite").format("delta").option("overwriteSchema",
-"true").save("Tables/aggregate_sale_by_date_employee")
+    ```
+    sale_by_date_employee = spark.sql("SELECT * FROM sale_by_date_employee")
+    sale_by_date_employee.write.mode("overwrite").format("delta").option("overwriteSchema", "true").save("Tables/aggregate_sale_by_date_employee")
+    ```
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
@@ -1108,3 +1065,4 @@ The lab also covers tasks related to ingesting sample data, optimizing
 delta tables, and building reports in Power BI for effective data
 analysis. The objectives aim to provide hands-on experience in utilizing
 Microsoft Fabric and Power BI for data management and reporting purpo
+
