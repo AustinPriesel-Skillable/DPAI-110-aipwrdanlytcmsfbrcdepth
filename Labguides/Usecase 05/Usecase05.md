@@ -1,4 +1,4 @@
-## **Use case 03-Building a Sales and Geography Data Warehouse for Contoso in Microsoft Fabric** 
+## **Use case 05-Building a Sales and Geography Data Warehouse for Contoso in Microsoft Fabric** 
 
 **Introduction**
 
@@ -1435,5 +1435,6 @@ insights into resource management, emphasizing the importance of cleanup
 procedures to maintain an efficient workspace. Collectively, these tasks
 present a comprehensive understanding of setting up, managing, and
 analyzing data within Microsoft Fabric.
+
 
 
