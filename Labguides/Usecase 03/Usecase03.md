@@ -138,7 +138,7 @@ Now that you have a workspace, it’s time to switch to the *Data
 engineering* experience in the portal and create a data lakehouse for
 the data files you’re going to analyze.
 
-1.  Create a new Eventhouse by clicking on the **+New item** button in
+1.  Create a new Lakehouse by clicking on the **+New item** button in
     the navigation bar.
 
 ![A screenshot of a computer AI-generated content may be
@@ -1638,4 +1638,5 @@ streamlining your workflow and enhancing productivity in real-world
 scenarios. The cleanup instructions ensure you leave no unnecessary
 resources, promoting an organized and efficient workspace management
 approach.
+
 
