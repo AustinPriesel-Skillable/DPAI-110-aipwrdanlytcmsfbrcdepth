@@ -1,3 +1,14 @@
+---
+lab:
+  title: 'Use Case 07: Train and track machine learning models with MLflow in Microsoft Fabric'
+  description: In this exercise, you have created a notebook and trained a machine learning model. You used Scikit-Learn to train the model and MLflow to track it´s performance.
+  duration: 5 minutes
+  level: 200
+  islab: true
+  primarytopics:
+    - Microsoft Fabric
+---
+
 # Use Case 07: Train and track machine learning models with MLflow in Microsoft Fabric
 
 **Introduction**
