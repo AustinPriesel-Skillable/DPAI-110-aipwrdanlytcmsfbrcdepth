@@ -1,3 +1,14 @@
+---
+lab:
+  title: 'Use Case 02: Perform Sentiment analysis and Text translation with AI functions in Microsoft Fabric'
+  description: Using AI functions in Fabric notebooks requires certain custom packages, which are preinstalled on the Fabric runtime. For the latest features and bugfixes, you can run the following code to install and import the most up-to-date packages. Afterward, you can use AI functions with pandas or PySpark, depending on your preference.
+  duration: 5 minutes
+  level: 400
+  islab: true
+  primarytopics:
+    - Microsoft Fabric
+---
+
 # Use Case 02: Perform Sentiment analysis and Text translation with AI functions in Microsoft Fabric
 
 **Introduction**
