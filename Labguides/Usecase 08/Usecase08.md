@@ -1,3 +1,14 @@
+---
+lab:
+  title: 'Use Case 08: Implementing a Data Science scenario in Microsoft Fabric'
+  description: enter +++FabricDataSciencelakehouse+++ in the Name field, click on the Create button and open the new lakehouse.
+  duration: 5 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Microsoft Fabric
+---
+
 # Use Case 08: Implementing a Data Science scenario in Microsoft Fabric
 
 **Introduction**
