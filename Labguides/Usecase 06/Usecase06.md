@@ -1,3 +1,14 @@
+---
+lab:
+  title: 'Use Case 06: Real-Time Intelligence and Data Warehousing with AbboCost in Microsoft Fabric'
+  description: Now that our data is streaming into our KQL database, we can begin to query and explore the data, leveraging KQL to gain insights into the data. A KQL queryset is used to run queries, view, and transform data from a KQL database. Like other artifacts, a KQL queryset exists within the context of a workspace. A queryset can contain multiple queries each stored in a tab. In this exercise, we'll create several KQL queries of increasing complexity to support different business uses.
+  duration: 75 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Microsoft Fabric
+---
+
 # Use Case 06: Real-Time Intelligence and Data Warehousing with AbboCost in Microsoft Fabric
 **Introduction**
 
