@@ -1,4 +1,4 @@
-# Use case 1: Creating a Lakehouse, ingesting sample data and building a report ()
+# Use case 1: Creating a Lakehouse, ingesting sample data and building a report
 
 **Introduction**
 
